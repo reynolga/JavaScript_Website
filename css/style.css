@@ -28,6 +28,32 @@
   text-transform: lowercase;
 }
 
+.hero-content {
+  text-align: center;
+  padding: 5.5rem 0rem;
+}
+
+.hero-content .code-icon{
+  padding: 1.25rem 1.55rem;
+  background-color: #da5252;
+  color: var(--color-text);
+  display: inline-block;
+  border-radius: 50rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.code-icon .fa-code{
+  font-size: 2rem;
+    display: inline-block;
+    line-height: 1.5;
+}
+
+
+
+
+
+
 .full-site-modal {
   position: fixed;
   top: 0;
@@ -77,3 +103,4 @@
 [data-animation="zoomInOut"].full-site-modal.is-visible {
   transform: none;
 }
+
