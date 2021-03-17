@@ -70,3 +70,10 @@
 .img-wrapper {
 
 }
+
+[data-animation="zoomInOut"].full-site-modal {
+  transform: scale(0.2);
+}
+[data-animation="zoomInOut"].full-site-modal.is-visible {
+  transform: none;
+}

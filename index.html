@@ -24,19 +24,40 @@
           <div class="navbar-nav">
             <ul class="ul-defaults-none main-menu">
               <li class="nav-items">Home</li>
-              <li class="nav-items">About Me</li>
-              <li class="nav-items">Contacts</li>
+              <li class="nav-items" data-open="about">About Me</li>
+              <li class="nav-items" data-open="contact">Contacts</li>
             </ul>
           </div>
         </nav>
       </header>
     </main>
 
-
-    <div class="full-site-modal page-block is-visible" data-animation="zoomInOut">
+    <!-- Modals -->
+    <!-- About Page Modal-->
+    <div id="about" class="full-site-modal page-block" data-animation="zoomInOut">
       <header class="modal-header">
         <h3>ABOUT PAGE</h3>
-        <i class="fas fa-times"></i>
+        <i class="fas fa-times" data-close="about"></i>
+      </header>
+      <div class="modal-body">
+        <div class="img-wrapper">
+          <img src="./assets/images/img4.jpg" alt="Xander">
+        </div>
+        <h2>Xander Reynolds</h2>
+        <p>Text 1</p>
+        <p>Text 2</p>
+        <div>
+          <div>Email Me:</div>
+          <a href="mailto:reynolga@miamioh.edu">reynolga@miamioh.edu</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Page Modal-->
+    <div id="contact" class="full-site-modal page-block" data-animation="zoomInOut">
+      <header class="modal-header">
+        <h3>Contact PAGE</h3>
+        <i class="fas fa-times" data-close="contact"></i>
       </header>
       <div class="modal-body">
         <div class="img-wrapper">
