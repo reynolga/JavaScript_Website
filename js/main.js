@@ -12,6 +12,8 @@ const modelOpen = '[data-open]';
 const modelClose = '[data-close]'; 
 const isVisible = 'is-visible';
 
+const dataFilter = '[data-filter]';
+
 const root = document.documentElement;
 
 
@@ -19,6 +21,9 @@ const root = document.documentElement;
 const toggleTheme = document.querySelector(themeTab);
 const switcher = document.querySelectorAll(switcherBtn);
 const currentTheme = localStorage.getItem(theme);
+
+/* Portfolio */ 
+const filterLink = document.querySelectorAll(dataFilter);
 
 /* Modal */
 const openModal = document.querySelectorAll(modelOpen);
@@ -69,6 +74,12 @@ for(const elm of switcher){
     // set active state
     setActive(elm, switcherBtn);
     setTheme(toggle);
+  })
+}
+
+for(const link of filterLink) {
+  link.addEventListener('click', function(){
+    setActive(link, '.filter-link');
   })
 }
 
