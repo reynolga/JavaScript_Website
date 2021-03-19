@@ -13,6 +13,7 @@ const modelClose = '[data-close]';
 const isVisible = 'is-visible';
 
 const dataFilter = '[data-filter]';
+const portfolioData = '[data-item]';
 
 const root = document.documentElement;
 
@@ -24,6 +25,8 @@ const currentTheme = localStorage.getItem(theme);
 
 /* Portfolio */ 
 const filterLink = document.querySelectorAll(dataFilter);
+const portfolioItems = document.querySelectorAll(portfolioData);
+const searchbox = document.querySelector('#search');
 
 /* Modal */
 const openModal = document.querySelectorAll(modelOpen);
@@ -77,10 +80,33 @@ for(const elm of switcher){
   })
 }
 
+searchbox.addEventListener('keyup', (e) => {
+  const searchInput = e.target.value.toLowerCase().trim();
+  
+  portfolioItems.forEach((item) => {
+    if(item.dataset.item.includes(searchInput)){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
+  })
+})
+
 for(const link of filterLink) {
   link.addEventListener('click', function(){
     setActive(link, '.filter-link');
-  })
+
+    portfolioItems.forEach((card) => {
+      const filter = this.dataset.filter;
+      if(filter === 'all'){
+        card.style.display = 'block';
+      } else if (card.dataset.item === filter){
+         card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 }
 
 // Full Site Modal "open buttons" 
@@ -97,6 +123,5 @@ for(const elm of closeModal){
     document.getElementById(modalId).classList.remove(isVisible);
   });
 }
-
 
 
