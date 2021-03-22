@@ -18,6 +18,7 @@ const portfolioData = '[data-item]';
 
 const root = document.documentElement;
 
+createCards();
 
 /* Theme */
 const toggleTheme = document.querySelector(themeTab);
@@ -125,69 +126,95 @@ for(const elm of closeModal){
   });
 }
 
-const cards = [
-  {
-    type:'web',
-    heading: 'Web Development',
-    imageName:'portfolio-1.jpg',
-    headerTag:'Skate Websites'
-  },
-  {
-    type:'web',
-    heading: 'Web Development',
-    imageName:'portfolio-2.jpg',
-    headerTag:'Skating Websites'
-  },
-  {
-    type:'web',
-    heading: 'Web Development',
-    imageName:'portfolio-3.jpg',
-    headerTag:'Eating Websites'
-  },
-  {
-    type:'ui',
-    heading: 'UI Design',
-    imageName:'portfolio-4.jpg',
-    headerTag:'Cool Design'
-  },
-  {
-    type:'app',
-    heading: 'App Development',
-    imageName:'portfolio-5.jpg',
-    headerTag:'Game app'
-  },
-  {
-    type:'app',
-    heading: 'App Development',
-    imageName:'portfolio-6.jpg',
-    headerTag:'Gambling app'
-  },
-  {
-    type:'ui',
-    heading: 'UI Design',
-    imageName:'portfolio-7.jpg',
-    headerTag:'Money Design'
-  },
-  {
-    type:'ui',
-    heading: 'UI Design',
-    imageName:'portfolio-8.jpg',
-    headerTag:'Fantastic Design'
-  }, 
 
-];
+function createCards() {
+  const cards = [
+    {
+      type:'web',
+      heading: 'Web Development',
+      imageName:'portfolio-1.jpg',
+      headerTag:'Skate Websites',
+      dataOpen:'web-1'
+    },
+    {
+      type:'web',
+      heading: 'Web Development',
+      imageName:'portfolio-2.jpg',
+      headerTag:'Skating Websites',
+      dataOpen:'web-2'
+    },
+    {
+      type:'web',
+      heading: 'Web Development',
+      imageName:'portfolio-3.jpg',
+      headerTag:'Eating Websites',
+      dataOpen:'web-3'
+    },
+    {
+      type:'ui',
+      heading: 'UI Design',
+      imageName:'portfolio-4.jpg',
+      headerTag:'Cool Design',
+      dataOpen:'ui-1'
+    },
+    {
+      type:'app',
+      heading: 'App Development',
+      imageName:'portfolio-5.jpg',
+      headerTag:'Game app',
+      dataOpen:'app-1'
+    },
+    {
+      type:'app',
+      heading: 'App Development',
+      imageName:'portfolio-6.jpg',
+      headerTag:'Gambling app',
+      dataOpen:'app-2'
+    },
+    {
+      type:'ui',
+      heading: 'UI Design',
+      imageName:'portfolio-7.jpg',
+      headerTag:'Money Design',
+      dataOpen:'ui-2'
+    },
+    {
+      type:'ui',
+      heading: 'UI Design',
+      imageName:'portfolio-8.jpg',
+      headerTag:'Fantastic Design',
+      dataOpen:'ui-3'
+    }, 
 
-const portfolioGridElement = document.querySelector(portfolioGrid);
+  ];
 
-cards.forEach( (card) => {
-  portfolioGridElement.innerHTML += 
-  `<div class="portfolio-card" data-item="${card.type}">
-      <div class="card-body">
-        <img src="./assets/images/${card.imageName}" alt="portfolio icon">
-        <a href="#" class="card-popup-box">
-          <div>${card.heading}</div>
-          <h3>${card.headerTag}</h3>
-        </a>
-      </div>            
-    </div>`;
+  const portfolioGridElement = document.querySelector(portfolioGrid);
+
+  cards.forEach( (card) => {
+    portfolioGridElement.innerHTML += 
+    `<div class="portfolio-card" data-item="${card.type}" data-open="${card.dataOpen}">
+        <div class="card-body">
+          <img src="./assets/images/${card.imageName}" alt="portfolio icon">
+          <div href="#" class="card-popup-box">
+            <div>${card.heading}</div>
+            <h3>${card.headerTag}</h3>
+          </div>
+        </div>            
+      </div>`;
+  });
+}
+
+//Modal dialog
+document.addEventListener('click', (e) => {
+  // console.log(e.target, document.querySelector('.modal.is-visible'));
+  if(e.target === document.querySelector('.modal.is-visible')){
+    document.querySelector('.modal.is-visible').classList.remove(isVisible)
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  // console.log(e.key);
+  if(e.key === 'Escape'){
+    document.querySelector('.modal.is-visible').classList.remove(isVisible)
+  }
 });
