@@ -7,6 +7,7 @@ const light = 'light';
 const open = 'open';
 const active = 'active';
 const themePanel = '.theme-panel';
+const portfolioGrid = '.portfolio-grid';
 
 const modelOpen = '[data-open]'; 
 const modelClose = '[data-close]'; 
@@ -124,4 +125,69 @@ for(const elm of closeModal){
   });
 }
 
+const cards = [
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-1.jpg',
+    headerTag:'Skate Websites'
+  },
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-2.jpg',
+    headerTag:'Skating Websites'
+  },
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-3.jpg',
+    headerTag:'Eating Websites'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-4.jpg',
+    headerTag:'Cool Design'
+  },
+  {
+    type:'app',
+    heading: 'App Development',
+    imageName:'portfolio-5.jpg',
+    headerTag:'Game app'
+  },
+  {
+    type:'app',
+    heading: 'App Development',
+    imageName:'portfolio-6.jpg',
+    headerTag:'Gambling app'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-7.jpg',
+    headerTag:'Money Design'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-8.jpg',
+    headerTag:'Fantastic Design'
+  }, 
 
+];
+
+const portfolioGridElement = document.querySelector(portfolioGrid);
+
+cards.forEach( (card) => {
+  portfolioGridElement.innerHTML += 
+  `<div class="portfolio-card" data-item="${card.type}">
+      <div class="card-body">
+        <img src="./assets/images/${card.imageName}" alt="portfolio icon">
+        <a href="#" class="card-popup-box">
+          <div>${card.heading}</div>
+          <h3>${card.headerTag}</h3>
+        </a>
+      </div>            
+    </div>`;
+});
