@@ -18,7 +18,70 @@ const portfolioData = '[data-item]';
 
 const root = document.documentElement;
 
-createCards();
+const cards = [
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-1.jpg',
+    headerTag:'Skate Websites',
+    dataOpen:'web-1',
+    modalTitle: 'Web Project 1'
+  },
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-2.jpg',
+    headerTag:'Skating Websites',
+    dataOpen:'web-2',
+    modalTitle: 'Web Project 2'
+  },
+  {
+    type:'web',
+    heading: 'Web Development',
+    imageName:'portfolio-3.jpg',
+    headerTag:'Eating Websites',
+    dataOpen:'web-3',
+    modalTitle: 'Web Project 3'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-4.jpg',
+    headerTag:'Cool Design',
+    dataOpen:'ui-1',
+    modalTitle: 'Web Project 4'
+  },
+  {
+    type:'app',
+    heading: 'App Development',
+    imageName:'portfolio-5.jpg',
+    headerTag:'Game app',
+    dataOpen:'app-1'
+  },
+  {
+    type:'app',
+    heading: 'App Development',
+    imageName:'portfolio-6.jpg',
+    headerTag:'Gambling app',
+    dataOpen:'app-2'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-7.jpg',
+    headerTag:'Money Design',
+    dataOpen:'ui-2'
+  },
+  {
+    type:'ui',
+    heading: 'UI Design',
+    imageName:'portfolio-8.jpg',
+    headerTag:'Fantastic Design',
+    dataOpen:'ui-3'
+  }
+];
+
+createCards(cards);
 
 /* Theme */
 const toggleTheme = document.querySelector(themeTab);
@@ -127,71 +190,13 @@ for(const elm of closeModal){
 }
 
 
-function createCards() {
-  const cards = [
-    {
-      type:'web',
-      heading: 'Web Development',
-      imageName:'portfolio-1.jpg',
-      headerTag:'Skate Websites',
-      dataOpen:'web-1'
-    },
-    {
-      type:'web',
-      heading: 'Web Development',
-      imageName:'portfolio-2.jpg',
-      headerTag:'Skating Websites',
-      dataOpen:'web-2'
-    },
-    {
-      type:'web',
-      heading: 'Web Development',
-      imageName:'portfolio-3.jpg',
-      headerTag:'Eating Websites',
-      dataOpen:'web-3'
-    },
-    {
-      type:'ui',
-      heading: 'UI Design',
-      imageName:'portfolio-4.jpg',
-      headerTag:'Cool Design',
-      dataOpen:'ui-1'
-    },
-    {
-      type:'app',
-      heading: 'App Development',
-      imageName:'portfolio-5.jpg',
-      headerTag:'Game app',
-      dataOpen:'app-1'
-    },
-    {
-      type:'app',
-      heading: 'App Development',
-      imageName:'portfolio-6.jpg',
-      headerTag:'Gambling app',
-      dataOpen:'app-2'
-    },
-    {
-      type:'ui',
-      heading: 'UI Design',
-      imageName:'portfolio-7.jpg',
-      headerTag:'Money Design',
-      dataOpen:'ui-2'
-    },
-    {
-      type:'ui',
-      heading: 'UI Design',
-      imageName:'portfolio-8.jpg',
-      headerTag:'Fantastic Design',
-      dataOpen:'ui-3'
-    }, 
-
-  ];
-
+function createCards(cardList) {
+  
   const portfolioGridElement = document.querySelector(portfolioGrid);
 
-  cards.forEach( (card) => {
-    portfolioGridElement.innerHTML += 
+  //Create the cards
+  cards.forEach( (card) => {    
+    const newCard = 
     `<div class="portfolio-card" data-item="${card.type}" data-open="${card.dataOpen}">
         <div class="card-body">
           <img src="./assets/images/${card.imageName}" alt="portfolio icon">
@@ -201,7 +206,62 @@ function createCards() {
           </div>
         </div>            
       </div>`;
+
+      portfolioGridElement.innerHTML += newCard;      
   });
+
+  //Add addEventListeners
+  const portfolioCards = document.querySelectorAll(".portfolio-card");
+  for(const elm of portfolioCards) {
+    elm.addEventListener('click', () => {
+      const cardElements = cardList.find((card) => card.dataOpen == elm.dataset.open);
+      if(cardElements != null) {
+        if(document.getElementById(cardElements.dataOpen) === null){
+          createModal(cardElements);
+        }
+      }
+    });
+  }
+
+  
+}
+
+function createModal(card) {
+  console.log(card);
+   
+  // Create the modal popup
+  const popupHtml = 
+  `<div id="${card.dataOpen}" class="modal" data-animation="slideInOutTop">
+      <div class="modal-dialog">
+        <header class="modal-header">
+          <h3>Web Project 1</h3>
+          <i class="fas fa-times" data-close="${card.dataOpen}"></i>
+        </header>
+        <div class="modal-body">
+          <div class="img-wrapper">
+            <img src="./assets/images/${card.imageName}" alt="portfolio icon">  
+          </div>  
+          <div class="text-wrapper">
+            <p><strong>My first awesome website</strong></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur magna posuere tortor cursus, ac finibus ante ultrices.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur magna posuere tortor cursus, ac finibus ante ultrices.</p>
+          </div>
+        </div>
+      </div>
+    </div>`
+
+    // Insert adjacent to other modals
+  const contactModal = document.getElementById('contact');
+  contactModal.insertAdjacentHTML("afterend", popupHtml);
+  
+  // Add event listener for closing.
+  const popUpClose = document.querySelector(`#${card.dataOpen} .fa-times`);
+  
+  popUpClose.addEventListener('click', function() {
+    const modalId = this.dataset.close;
+    document.getElementById(modalId).classList.remove(isVisible);
+  });
+  
 }
 
 //Modal dialog
