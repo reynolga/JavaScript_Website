@@ -402,10 +402,9 @@
   right: 0;
   padding: 1rem;
   transition: all 0.35s ease-in;
-  /* background: white;  */
   visibility: hidden;
   opacity: 0;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .modal-dialog {
@@ -486,3 +485,29 @@
 }
 
 
+@media(max-width: 991px) {
+
+  #about .img-wrapper,
+  #about .about-text {
+    flex: initial;
+    margin: 0 auto;
+  }
+
+  .page-block{
+    text-align: center;
+  }
+}
+
+@media(max-width: 768px) {
+
+ :root {
+   --marquee-elms-displayed: 3;
+ }
+
+ .marquee:before,
+ .marquee:after {
+    width: 5rem;
+ }
+
+ 
+}
