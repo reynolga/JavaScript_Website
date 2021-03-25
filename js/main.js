@@ -278,3 +278,16 @@ document.addEventListener('keyup', (e) => {
     document.querySelector('.modal.is-visible').classList.remove(isVisible)
   }
 });
+
+const marqueeElmsDisplayed = getComputedStyle(root).getPropertyValue('--marquee-elms-displayed');
+const marqueeContent = document.querySelector('ul.marquee-content');
+
+root.style.setProperty('--marquee-elms', marqueeContent.children.length);
+
+for(let i = 0; i < marqueeElmsDisplayed; i++) {
+  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
+
+// get elements displayed in modal
+// nodelist.length
+// assign --marquee-elems nodelist.length
